@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+		body
+		{
+			font-family: "Rubik", "Fira Sans", "Mukta", sans-serif;
+		}
+		body, ul {
+		margin: 0;
+		padding: 0;
+		background-color: #f6f6f6;
+		}
+	
+		a 
+		{ 
+			color: inherit; 
+			text-decoration: none;
+
+		} 
+        .sidebar
+        {
+            position:fixed;
+            top:0;
+            left:0;
+            background-color:#123524;
+            width: 15%;
+            height: 100%;
+			border-right: 1px solid #d3d3d3;
+
+			
+        }
+
+        .header
+        {
+            position:fixed;
+            top:0;
+            right: 0;
+            width: 85%;
+            height: 10%;
+			box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+			z-index: 1000;
+			background:white;
+			
+
+        }
+		
+		.heading
+		{
+			border-bottom:solid 1px #d3d3d3;
+			padding:10px;
+			display: flex;             
+			align-items: center;
+			gap: 8px;
+			
+		}
+		
+		.heading-left
+		{
+			height:15%;
+			width:50%;
+			
+			display: flex;             
+			align-items: center;
+			gap: 8px;
+
+
+		}
+		
+		.heading-left img
+		{
+			margin-left:30px;
+		}
+		
+		.heading-right
+		{
+			width:50%;
+			height:15%;
+			display: flex;             
+			align-items: center;
+			gap: 8px;
+			justify-content: right;
+
+
+		}
+		
+        .logo
+        {
+            position:absolute;
+            top:0;
+            left:0;
+            display: flex;             
+            justify-content: center;
+        }
+
+        .logo img
+        {
+            height: 10%;
+            width: 80%;
+            object-fit: contain; 
+
+        }
+
+		
+		
+		
+        .menu
+        {
+            position:absolute;
+            bottom:0;
+            height: 80%;
+            color:white;
+			width:100%;
+
+        }
+		
+		
+		
+		.menu li a		
+		{	
+			padding-left:10px;
+			padding-top:10px;
+			padding-bottom:10px;
+			list-style-type: none;
+			width:100%;
+			font-size: 100%;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		
+		.menu li img		
+		{	
+			 filter: invert(100%);
+		}
+		
+		li
+		{
+			background-color:#123524;
+		}
+		
+		li:hover 
+		{
+			background-color: #215f41;
+			cursor: pointer; 
+		}
+
+		.header, .search-bar
+		{	
+			display: flex;
+			align-items: center;
+		}
+		
+		.search-bar input
+		{
+			padding-left:10px;
+			padding-top:5px;
+			padding-bottom:5px;
+			border-radius:20px;
+			width:100%;
+			background-color:#f1f1f1;
+		}
+		
+		.search-bar
+		{
+			width:60%;
+			
+		}
+		
+		.search-bar img
+		
+		{
+			margin-left:30px;
+		}
+		
+		.right-side
+		{
+			 
+			 width:40%;
+		}
+		
+		
+		.right-side-content
+		{
+			 display: flex;
+			 align-items: center;
+			 justify-content: right;
+
+			 gap: 8px;
+
+		}
+		
+		.right-side-content img
+		{
+			 display: flex;
+			 align-items: center;
+			 
+		}
+		
+		.pfp img
+		{
+			border: 1px solid #d3d3d3;
+			border-radius:100%;
+			height:40px;
+			width:40px;
+			object-fit: cover;
+			
+
+		}
+		
+		.pfp img:hover
+		{
+			border: 1px solid black;			
+
+		}
+		
+
+		button
+		{
+			border-radius:20px;
+			border: 1 px solid #d3d3d3;
+			padding-top:10px;
+			padding-bottom:10px;
+			padding-left:25px;
+			padding-right:25px;
+			background-color:#123524;
+			color:white;
+
+		}
+		
+		button:hover
+		{
+			background-color: #215f41;
+			cursor: pointer; 
+			border:solid 1px white;
+		}
+		
+		.Field
+		{
+			 display: flex;  
+			 width: 100%;
+			 height: 100%;
+		}
+
+		
+		
+        .main
+        {
+			position:absolute;
+			bottom:0;
+			height:90%;
+			right:0;
+			width:85%;
+			
+			background-color: #f6f6f6;
+		}
+		
+		.projects
+		{
+			width:75%;
+			margin:40px;
+			height: auto;
+		}
+		
+		.container-field
+		{
+			
+			display:grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap:20px;
+
+			
+		}
+		
+		.container
+		{
+			margin-top:15px;
+			color: #545454;
+			background-color: white;
+			border-style:none;
+			border-left: 8px solid #f7d88b;
+			padding:20px;
+			border-radius:10px;
+			box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+			height:auto;			
+
+		}
+		
+		.main-right
+		{
+			width:25%;
+			margin-top:40px;
+			margin-right:40px;
+			height: 100%;
+		
+		}
+		
+		
+		.announcments
+		{
+		    
+			color: #545454;
+			background-color: white;
+			border-style:none;
+			border-radius:10px;
+			box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+		    margin-top:30px;
+
+		
+		
+		}
+		
+		.announcments div
+		{
+		    margin-top:7px;
+			padding:10px;
+			border-bottom: 1px solid #d3d3d3;
+			
+			
+		}
+		
+		.trending
+		{
+			color: #545454;
+			background-color: white;
+			border-style:none;
+			border-radius:10px;
+			box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+			padding:10px;
+			height:auto;
+
+		
+		}
+		
+		.stats
+		{
+			margin-top:40px;
+
+		}
+		
+		
+		
+		.icons
+		{
+			display:flex;
+			justify-content:right;
+		}
+		
+		.container canvas {
+		max-height: 300px; 
+		width: 100%;       
+		}
+
+		
+		
+		
+    </style>
+</head>
+<body>
+    <div class = "sidebar">
+        <div class = "logo">
+            <img src = "Photos/Logo.png">
+         </div>
+        <div class = "menu">
+            <ul>
+                <li><a href = "#"><img src = "Photos/Icons/home.svg">Home</a></li>
+                <li><a href = "#"><img src = "Photos/Icons/account.svg">Profile</a></li> 
+                <li><a href = "#"><img src = "Photos/Icons/message.svg">Messages</a></li> 
+				<li><a href = "#"><img src = "Photos/Icons/calendar.svg">Projects</a></li> 
+                <li><a href = "#"><img src = "Photos/Icons/clipboard.svg">Goals</a></li> 
+                <li><a href = "#"><img src = "Photos/Icons/order.svg">Tasks</a></li> 
+                <li><a href = "#"><img src = "Photos/Icons/clock.svg">History</a></li> 
+                <li><a href = "#"><img src = "Photos/Icons/cog.svg">Settings</a></li> 
+                <li><a href = "#"><img src = "Photos/Icons/help.svg">Support</a></li>
+                <li><a href = "#"><img src = "Photos/Icons/shield.svg">Privacy</a></li>
+                <li><a href = "#"><img src = "Photos/Icons/logout.svg">Log Out</a></li> 
+            </ul>
+        </div>
+    </div>
+
+    <div class = "header">
+	
+		<div class = "search-bar">
+		<img src = "Photos/Icons/magnify.svg"><input type = "text" placeholder = "Search...">
+		</div>
+
+		<div class = "right-side">
+		<div class = "right-side-content">
+
+		<img src = "Photos/Icons/notif.svg">
+		<img src = "Photos/Icons/bell.svg">
+		
+	    <div class = "pfp">
+			<img src = "Photos/pfp.jpg">
+		</div>
+		
+		<img src = "Photos/Icons/down.svg">
+
+		</div>
+		</div>
+    </div>
+
+    <div class = "main">
+	<div class = "heading">
+	<div class = "heading-left">
+
+	<div class = "pfp"><img src = "Photos/pfp.jpg"></div>
+	 
+	<p>Hi there, John!<p>
+	</div>
+	
+	<div class = "heading-right">
+	<button>Create</button>
+
+	<button>Share</button>
+	
+	<button>Upload</button>
+
+	</div>
+	</div>
+	
+	<div class = "Field">
+
+	
+	<div class = "projects">
+	<p>Your Projects</p>
+	
+	
+	<div class = "container-field">
+
+	<div class = "container">
+	<h3>Update Product Listings</h3>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae eius dolorem reprehenderit nulla! Laudantium eos placeat dignissimos sapiente, nesciunt sit esse aliquid repellendus.</p>
+	
+	<div class = "icons">
+	
+			<a href="#"><img src = "Photos/Icons/star.svg"></a>
+			<a href="#"><img src = "Photos/Icons/eye.svg"></a>
+			<a href="#"><img src = "Photos/Icons/delete.svg"></a>
+
+		</div>
+
+	</div>
+	<div class = "container">
+	<h3>Improve UI</h3>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae eius dolorem reprehenderit nulla! Laudantium eos placeat dignissimos sapiente, nesciunt sit esse aliquid repellendus.</p>
+	
+		<div class = "icons">
+
+			<a href="#"><img src = "Photos/Icons/star.svg"></a>
+			<a href="#"><img src = "Photos/Icons/eye.svg"></a>
+			<a href="#"><img src = "Photos/Icons/delete.svg"></a>
+		</div>
+
+	</div>
+	<div class = "container">
+	<h3>Create Newsletter</h3>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae eius dolorem reprehenderit nulla! Laudantium eos placeat dignissimos sapiente, nesciunt sit esse aliquid repellendus.</p>
+	
+		<div class = "icons">
+
+			<a href="#"><img src = "Photos/Icons/star.svg"></a>
+			<a href="#"><img src = "Photos/Icons/eye.svg"></a>
+			<a href="#"><img src = "Photos/Icons/delete.svg"></a>
+		</div>
+
+	</div>
+	</div>
+	
+	<div class = "stats">
+	Stats
+
+	<div class = "container">
+	
+	
+	<h3>Traffic</h3>
+	<canvas id="trafficChart"></canvas>
+	</div>
+	
+	</div>
+
+
+	</div>
+	
+	<div class = "main-right">
+	<p>Announcments<p>
+
+	<div class = "announcments">
+	
+	<div>
+	Site maintenance
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae eius dolorem reprehenderit nulla! Laudantium eos placeat dignissimos sapiente, nesciunt sit esse aliquid repellendus.</p>
+	</div>
+	<div>
+	Community share day
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae eius dolorem reprehenderit nulla! Laudantium eos placeat dignissimos sapiente, nesciunt sit esse aliquid repellendus.</p>
+	</div>
+	<div>
+	Updated privacy policy
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae eius dolorem reprehenderit nulla! Laudantium eos placeat dignissimos sapiente, nesciunt sit esse aliquid repellendus.</p>
+	</div>
+	</div>
+
+	
+	<p>Trending<p>
+	<div class = "trending">
+	<div>
+	Data
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae eius dolorem reprehenderit nulla! Laudantium eos placeat dignissimos sapiente, nesciunt sit esse aliquid repellendus.</p>
+	</div>
+	</div>
+	
+	
+
+	
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+function makeChart(el, type, data) {
+  new Chart(document.getElementById(el), {
+    type: type,
+    data: {
+      labels: Object.keys(data),
+      datasets: [{
+        data: Object.values(data),
+        backgroundColor: ['#FF6384','#36A2EB','#FFCE56']
+      }]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom' } },
+      maintainAspectRatio: false
+    }
+  });
+}
+
+makeChart('trafficChart', 'doughnut',{
+  Instagram: 19,
+  Facebook: 47,
+  "Online Search": 34 
+
+});
+</script>
+
+</body>
+</html>
